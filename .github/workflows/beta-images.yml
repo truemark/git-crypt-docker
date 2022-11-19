@@ -35,8 +35,8 @@ jobs:
             -t truemark/git-crypt:beta-${GIT_VERSION} \
             -t truemark/git-crypt:beta \
             .
-          IMAGE="truemark/git:beta-${GIT_CRYPT_VERSION}" ARCH="amd64" FILE="git-crypt-${GIT_CRYPT_VERSION}-linux-amd64.tar" ./getlayer.sh
-          IMAGE="truemark/git:beta-${GIT_CRYPT_VERSION}" ARCH="arm64" FILE="git-crypt-${GIT_CRYPT_VERSION}-linux-arm64.tar" ./getlayer.sh
+          IMAGE="truemark/git-crypt:beta-${GIT_CRYPT_VERSION}" ARCH="amd64" FILE="git-crypt-${GIT_CRYPT_VERSION}-linux-amd64.tar" ./getlayer.sh
+          IMAGE="truemark/git-crypt:beta-${GIT_CRYPT_VERSION}" ARCH="arm64" FILE="git-crypt-${GIT_CRYPT_VERSION}-linux-arm64.tar" ./getlayer.sh
           docker buildx build \
             --build-arg GIT_CRYPT_VERSION="${GIT_CRYPT_VERSION}" \
             --push \

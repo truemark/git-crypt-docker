@@ -45,7 +45,7 @@ jobs:
             --push \
             --platform linux/arm64,linux/amd64 \
             -f alpine.Dockerfile \
-            -t truemark/git-crypt:musl-${GIT_VERSION} \
+            -t truemark/git-crypt:musl-${GIT_CRYPT_VERSION} \
             -t truemark/git-crypt:musl \
             .
           IMAGE="truemark/git-crypt:musl-${GIT_CRYPT_VERSION}" ARCH="amd64" FILE="git-crypt-musl-${GIT_CRYPT_VERSION}-linux-amd64.tar" ./getlayer.sh
