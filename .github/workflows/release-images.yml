@@ -30,12 +30,12 @@ jobs:
       - name: Get Git Crypt Version
         id: version
         run: |
-          export GIT_CRYPT_VERSION=$(curl -sSL https://api.github.com/repos/AGWA/git-crypt/tags | jq -r "[.[].name | select(contains(\"debian\") | not)] | .[0]") >> $GITHUB_OUTPUT
+          export GIT_CRYPT_VERSION=$(curl -sSL https://api.github.com/repos/AGWA/git-crypt/tags | jq -r "[.[].name | select(contains(\"debian\") | not)] | .[0]")
           echo "GIT_CRYPT_VERSION=${GIT_CRYPT_VERSION}" >> $GITHUB_ENV
-          export TAG_EXITS=$(curl -sSL https://api.github.com/repos/truemark/git-crypt-docker/tags | jq -r ".[].name | contains(\"${GIT_CRYPT_VERSION}\")"
-          echo "TAG_EXITS=${TAG_EXITS}" >> $GITHUB_ENV
+          export TAG_EXISTS=$(curl -sSL https://api.github.com/repos/truemark/git-crypt-docker/tags | jq -r ".[].name | contains(\"${GIT_CRYPT_VERSION}\")")
+          echo "TAG_EXISTS=${TAG_EXISTS}" >> $GITHUB_ENV
       - name: Build
-        if: ${{ env.TAG_EXITS == 'true' }}
+        if: ${{ env.TAG_EXISTS == 'true' }}
         run: |
           docker buildx build \
             --push \
@@ -79,13 +79,13 @@ jobs:
           IMAGE="truemark/git-crypt:${GIT_CRYPT_VERSION}-ubuntu-jammy" ARCH="arm64" FILE="git-crypt-${GIT_CRYPT_VERSION}-ubuntu-jammy-arm64.tar" ./getlayer.sh
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
-        if: ${{ env.TAG_EXITS == 'true' }}
+        if: ${{ env.TAG_EXISTS == 'true' }}
         with:
           name: files
           path: |
             *.tar.gz
       - name: Upload binaries to release
-        if: ${{ env.TAG_EXITS == 'true' }}
+        if: ${{ env.TAG_EXISTS == 'true' }}
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
