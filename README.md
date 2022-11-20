@@ -46,6 +46,6 @@ FLAVOR="alpine-arm64" curl -sSL $(curl -sSL https://api.github.com/repos/truemar
 ## License
 
 The contents of this repository are released under the BSD 3-Clause license. See the
-license [here](https://github.com/truemark/git-docker/blob/main/LICENSE.txt).
+license [here](https://github.com/truemark/git-crypt-docker/blob/main/LICENSE.txt).
 
 
