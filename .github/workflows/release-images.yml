@@ -32,56 +32,60 @@ jobs:
         run: |
           export GIT_CRYPT_VERSION=$(curl -sSL https://api.github.com/repos/AGWA/git-crypt/tags | jq -r "[.[].name | select(contains(\"debian\") | not)] | .[0]") >> $GITHUB_OUTPUT
           echo "GIT_CRYPT_VERSION=${GIT_CRYPT_VERSION}" >> $GITHUB_ENV
+          export TAG_EXITS=$(curl -sSL https://api.github.com/repos/truemark/git-crypt-docker/tags | jq -r ".[].name | contains(\"${GIT_CRYPT_VERSION}\")"
+          echo "TAG_EXITS=${TAG_EXITS}" >> $GITHUB_ENV
       - name: Build
+        if: ${{ env.TAG_EXITS == 'true' }}
         run: |
           docker buildx build \
             --push \
             --platform linux/arm64,linux/amd64 \
             --build-arg GIT_CRYPT_VERSION="${GIT_CRYPT_VERSION}" \
             -f amazonlinux.Dockerfile \
-            -t truemark/git-crypt:amazonlinux-${GIT_CRYPT_VERSION} \
+            -t truemark/git-crypt:${GIT_CRYPT_VERSION}-amazonlinux \
             -t truemark/git-crypt:amazonlinux \
             .
-          IMAGE="truemark/git-crypt:amazonlinux-${GIT_CRYPT_VERSION}" ARCH="amd64" FILE="git-crypt-amazonlinux-${GIT_CRYPT_VERSION}-linux-amd64.tar" ./getlayer.sh
-          IMAGE="truemark/git-crypt:amazonlinux-${GIT_CRYPT_VERSION}" ARCH="arm64" FILE="git-crypt-amazonlinux-${GIT_CRYPT_VERSION}-linux-arm64.tar" ./getlayer.sh
+          IMAGE="truemark/git-crypt:${GIT_CRYPT_VERSION}-amazonlinux" ARCH="amd64" FILE="git-crypt-${GIT_CRYPT_VERSION}-amazonlinux-amd64.tar" ./getlayer.sh
+          IMAGE="truemark/git-crypt:${GIT_CRYPT_VERSION}-amazonlinux" ARCH="arm64" FILE="git-crypt-${GIT_CRYPT_VERSION}-amazonlinux-arm64.tar" ./getlayer.sh
           docker buildx build \
             --push \
             --platform linux/arm64,linux/amd64 \
             --build-arg GIT_CRYPT_VERSION="${GIT_CRYPT_VERSION}" \
             -f alpine.Dockerfile \
-            -t truemark/git-crypt:alpine-${GIT_CRYPT_VERSION} \
+            -t truemark/git-crypt:${GIT_CRYPT_VERSION}-alpine \
             -t truemark/git-crypt:alpine \
             .
-          IMAGE="truemark/git-crypt:alpine-${GIT_CRYPT_VERSION}" ARCH="amd64" FILE="git-crypt-alpine-${GIT_CRYPT_VERSION}-linux-amd64.tar" ./getlayer.sh
-          IMAGE="truemark/git-crypt:alpine-${GIT_CRYPT_VERSION}" ARCH="arm64" FILE="git-crypt-alpine-${GIT_CRYPT_VERSION}-linux-arm64.tar" ./getlayer.sh
+          IMAGE="truemark/git-crypt:${GIT_CRYPT_VERSION}-alpine" ARCH="amd64" FILE="git-crypt-${GIT_CRYPT_VERSION}-alpine-amd64.tar" ./getlayer.sh
+          IMAGE="truemark/git-crypt:${GIT_CRYPT_VERSION}-alpine" ARCH="arm64" FILE="git-crypt-${GIT_CRYPT_VERSION}-alpine-arm64.tar" ./getlayer.sh
           docker buildx build \
             --push \
             --platform linux/arm64,linux/amd64 \
             --build-arg GIT_CRYPT_VERSION="${GIT_CRYPT_VERSION}" \
             -f ubuntu-focal.Dockerfile \
-            -t truemark/git-crypt:ubuntu-focal-${GIT_CRYPT_VERSION} \
+            -t truemark/git-crypt:${GIT_CRYPT_VERSION}-ubuntu-focal \
             -t truemark/git-crypt:ubuntu-focal \
             .
-          IMAGE="truemark/git-crypt:ubuntu-focal-${GIT_CRYPT_VERSION}" ARCH="amd64" FILE="git-crypt-ubuntu-focal-${GIT_CRYPT_VERSION}-linux-amd64.tar" ./getlayer.sh
-          IMAGE="truemark/git-crypt:ubuntu-focal-${GIT_CRYPT_VERSION}" ARCH="arm64" FILE="git-crypt-ubuntu-focal-${GIT_CRYPT_VERSION}-linux-arm64.tar" ./getlayer.sh
+          IMAGE="truemark/git-crypt:${GIT_CRYPT_VERSION}-ubuntu-focal" ARCH="amd64" FILE="git-crypt-${GIT_CRYPT_VERSION}-ubuntu-focal-amd64.tar" ./getlayer.sh
+          IMAGE="truemark/git-crypt:${GIT_CRYPT_VERSION}-ubuntu-focal" ARCH="arm64" FILE="git-crypt-${GIT_CRYPT_VERSION}-ubuntu-focal-arm64.tar" ./getlayer.sh
           docker buildx build \
             --push \
             --platform linux/arm64,linux/amd64 \
             --build-arg GIT_CRYPT_VERSION="${GIT_CRYPT_VERSION}" \
             -f ubuntu-jammy.Dockerfile \
-            -t truemark/git-crypt:ubuntu-jammy-${GIT_CRYPT_VERSION} \
+            -t truemark/git-crypt:${GIT_CRYPT_VERSION}-ubuntu-jammy \
             -t truemark/git-crypt:ubuntu-jammy \
             .
-          IMAGE="truemark/git-crypt:ubuntu-jammy-${GIT_CRYPT_VERSION}" ARCH="amd64" FILE="git-crypt-ubuntu-jammy-${GIT_CRYPT_VERSION}-linux-amd64.tar" ./getlayer.sh
-          IMAGE="truemark/git-crypt:ubuntu-jammy-${GIT_CRYPT_VERSION}" ARCH="arm64" FILE="git-crypt-ubuntu-jammy-${GIT_CRYPT_VERSION}-linux-arm64.tar" ./getlayer.sh
-      - uses: actions/upload-artifact@v3
+          IMAGE="truemark/git-crypt:${GIT_CRYPT_VERSION}-ubuntu-jammy" ARCH="amd64" FILE="git-crypt-${GIT_CRYPT_VERSION}-ubuntu-jammy-amd64.tar" ./getlayer.sh
+          IMAGE="truemark/git-crypt:${GIT_CRYPT_VERSION}-ubuntu-jammy" ARCH="arm64" FILE="git-crypt-${GIT_CRYPT_VERSION}-ubuntu-jammy-arm64.tar" ./getlayer.sh
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        if: ${{ env.TAG_EXITS == 'true' }}
         with:
           name: files
           path: |
             *.tar.gz
-      - name: Keepalive
-        uses: gautamkrishnar/keepalive-workflow@v1
       - name: Upload binaries to release
+        if: ${{ env.TAG_EXITS == 'true' }}
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -89,4 +93,7 @@ jobs:
           file: |
             *.tar.gz
           release_name: ${{env.GIT_CRYPT_VERSION}}
+          tag: ${{env.GIT_CRYPT_VERSION}}
           overwrite: true
+      - name: Keepalive
+        uses: gautamkrishnar/keepalive-workflow@v1
