@@ -32,7 +32,7 @@ jobs:
           echo "Version: ${GIT_CRYPT_VERSION}"
           export TAG_EXISTS=$(curl -sSL https://api.github.com/repos/truemark/git-crypt-docker/tags | jq -r ".[].name | contains(\"beta-${GIT_CRYPT_VERSION}\")")
           echo "TAG_EXISTS=${TAG_EXISTS}" >> $GITHUB_ENV
-          echo "Exists: ${TAG_EXISTS)"
+          echo "Exists: ${TAG_EXISTS}"
       - name: Build
         if: ${{ env.TAG_EXISTS != 'true' }}
         run: |
