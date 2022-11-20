@@ -9,8 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
-      GIT_CRYPT_VERSION: ${{ steps.version.outputs.GIT_CRYPT_VERSION }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -28,10 +26,11 @@ jobs:
         uses: docker/setup-buildx-action@v2
       - name: Get Git Crypt Version
         id: version
-        run: echo GIT_CRYPT_VERSION=$(curl -sSL https://api.github.com/repos/AGWA/git-crypt/tags | jq -r "[.[].name | select(contains(\"debian\") | not)] | .[0]") >> $GITHUB_OUTPUT
+        run: |
+          export GIT_CRYPT_VERSION=$(curl -sSL https://api.github.com/repos/AGWA/git-crypt/tags | jq -r "[.[].name | select(contains(\"debian\") | not)] | .[0]") >> $GITHUB_OUTPUT
+          echo "::set-env name=GIT_CRYPT_VERSION::${GIT_CRYPT_VERSION}"
       - name: Build
         run: |
-          export GIT_CRYPT_VERSION=${{needs.build.outputs.GIT_CRYPT_VERSION}}
           docker buildx build \
             --push \
             --platform linux/arm64,linux/amd64 \
@@ -78,7 +77,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file_glob: true
           file: "*.gz"
-          release_name: beta-${{needs.build.outputs.GIT_CRYPT_VERSION}}
+          release_name: beta-${{GIT_CRYPT_VERSION}}
           overwrite: true
       - uses: actions/upload-artifact@v3
         with:
