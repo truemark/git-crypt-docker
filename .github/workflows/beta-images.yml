@@ -71,16 +71,18 @@ jobs:
             .
           IMAGE="truemark/git-crypt:beta-ubuntu-jammy-${GIT_CRYPT_VERSION}" ARCH="amd64" FILE="git-crypt-ubuntu-jammy-${GIT_CRYPT_VERSION}-linux-amd64.tar" ./getlayer.sh
           IMAGE="truemark/git-crypt:beta-ubuntu-jammy-${GIT_CRYPT_VERSION}" ARCH="arm64" FILE="git-crypt-ubuntu-jammy-${GIT_CRYPT_VERSION}-linux-arm64.tar" ./getlayer.sh
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file_glob: true
-          file: "*.gz"
-          release_name: beta-${{env.GIT_CRYPT_VERSION}}
-          overwrite: true
       - uses: actions/upload-artifact@v3
         with:
           name: files
           path: |
             *.tar.gz
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file_glob: true
+          file: |
+            *.tar.gz
+          release_name: beta-${{env.GIT_CRYPT_VERSION}}
+          overwrite: true
+
