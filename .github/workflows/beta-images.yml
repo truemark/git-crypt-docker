@@ -77,7 +77,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file_glob: true
           file: "*.gz"
-          release_name: beta-${{GIT_CRYPT_VERSION}}
+          release_name: beta-${{env.GIT_CRYPT_VERSION}}
           overwrite: true
       - uses: actions/upload-artifact@v3
         with:
