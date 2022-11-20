@@ -35,7 +35,7 @@ jobs:
           export TAG_EXISTS=$(curl -sSL https://api.github.com/repos/truemark/git-crypt-docker/tags | jq -r ".[].name | contains(\"${GIT_CRYPT_VERSION}\")")
           echo "TAG_EXISTS=${TAG_EXISTS}" >> $GITHUB_ENV
       - name: Build
-        if: ${{ env.TAG_EXISTS == 'true' }}
+        if: ${{ env.TAG_EXISTS == 'false' }}
         run: |
           docker buildx build \
             --push \
@@ -79,13 +79,13 @@ jobs:
           IMAGE="truemark/git-crypt:${GIT_CRYPT_VERSION}-ubuntu-jammy" ARCH="arm64" FILE="git-crypt-${GIT_CRYPT_VERSION}-ubuntu-jammy-arm64.tar" ./getlayer.sh
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
-        if: ${{ env.TAG_EXISTS == 'true' }}
+        if: ${{ env.TAG_EXISTS == 'false' }}
         with:
           name: files
           path: |
             *.tar.gz
       - name: Upload binaries to release
-        if: ${{ env.TAG_EXISTS == 'true' }}
+        if: ${{ env.TAG_EXISTS == 'false' }}
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
