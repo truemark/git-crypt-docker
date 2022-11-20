@@ -8,7 +8,7 @@ https://api.github.com/repos/AGWA/git-crypt/tags with the following goals:
 * Provide amd64 and arm64 versions of git-crypt for Linux
 * Reduce unwanted dependencies by not using a package manager
 
-## How do I get the latest version of git into my docker image?
+## How do I get the latest version of git-crypt into my docker image?
 
 For Amazon Linux, add the following to your Dockerfile
 ```
@@ -28,6 +28,15 @@ COPY --from=truemark/git-crypt:ubuntu-jammy /usr/local/ /usr/local/
 For Ubuntu Focal (20.04), add the following to your Dockerfile
 ```
 COPY --from=truemark/git-crypt:ubuntu-focal /usr/local/ /usr/local/
+```
+
+## How do I download the latest version of git-crypt without using docker?
+
+The following one-liner example uses curl, jq and tar to grab
+the latest non-beta release for alpine-arm64 and installs it.
+
+```
+FLAVOR="alpine-arm64" curl -sSL $(curl -sSL https://api.github.com/repos/truemark/git-crypt-docker/releases/latest | jq -r "select(.tag_name | startswith(\"beta\") | not) | .assets[].browser_download_url | select(. | contains(\"${FLAVOR}\"))") -o - | tar -C / -zxf -
 ```
 
 ## Maintainers
