@@ -28,7 +28,7 @@ jobs:
         id: version
         run: |
           export GIT_CRYPT_VERSION=$(curl -sSL https://api.github.com/repos/AGWA/git-crypt/tags | jq -r "[.[].name | select(contains(\"debian\") | not)] | .[0]") >> $GITHUB_OUTPUT
-          echo "::set-env name=GIT_CRYPT_VERSION::${GIT_CRYPT_VERSION}"
+          echo "GIT_CRYPT_VERSION=${GIT_CRYPT_VERSION}" >> $GITHUB_ENV
       - name: Build
         run: |
           docker buildx build \
