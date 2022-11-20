@@ -32,8 +32,10 @@ jobs:
         run: |
           export GIT_CRYPT_VERSION=$(curl -sSL https://api.github.com/repos/AGWA/git-crypt/tags | jq -r "[.[].name | select(contains(\"debian\") | not)] | .[0]")
           echo "GIT_CRYPT_VERSION=${GIT_CRYPT_VERSION}" >> $GITHUB_ENV
+          echo "Version: ${GIT_CRYPT_VERSION}"
           export TAG_EXISTS=$(curl -sSL https://api.github.com/repos/truemark/git-crypt-docker/tags | jq -r ".[].name | contains(\"${GIT_CRYPT_VERSION}\")")
           echo "TAG_EXISTS=${TAG_EXISTS}" >> $GITHUB_ENV
+          echo "Exists: ${TAG_EXISTS)"
       - name: Build
         if: ${{ env.TAG_EXISTS != 'true' }}
         run: |
