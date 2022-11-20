@@ -29,27 +29,46 @@ jobs:
         uses: docker/setup-buildx-action@v2
       - name: Build
         run: |
-          export GIT_CRYPT_VERSION=$(curl -sSL https://api.github.com/repos/AGWA/git-crypt/tags | jq -r "[.[].name | select(contains(\"debian\") | not)] | .[0]")
           docker buildx build \
-            --build-arg GIT_CRYPT_VERSION="${GIT_CRYPT_VERSION}" \
             --push \
             --platform linux/arm64,linux/amd64 \
+            --build-arg GIT_CRYPT_VERSION="${GIT_CRYPT_VERSION}" \
             -f amazonlinux.Dockerfile \
-            -t truemark/git-crypt:${GIT_CRYPT_VERSION} \
-            -t truemark/git-crypt:latest \
+            -t truemark/git-crypt:amazonlinux-${GIT_CRYPT_VERSION} \
+            -t truemark/git-crypt:amazonlinux \
             .
-          IMAGE="truemark/git-crypt:${GIT_CRYPT_VERSION}" ARCH="amd64" FILE="git-crypt-${GIT_CRYPT_VERSION}-linux-amd64.tar" ./getlayer.sh
-          IMAGE="truemark/git-crypt:${GIT_CRYPT_VERSION}" ARCH="arm64" FILE="git-crypt-${GIT_CRYPT_VERSION}-linux-arm64.tar" ./getlayer.sh
+          IMAGE="truemark/git-crypt:amazonlinux-${GIT_CRYPT_VERSION}" ARCH="amd64" FILE="git-crypt-amazonlinux-${GIT_CRYPT_VERSION}-linux-amd64.tar" ./getlayer.sh
+          IMAGE="truemark/git-crypt:amazonlinux-${GIT_CRYPT_VERSION}" ARCH="arm64" FILE="git-crypt-amazonlinux-${GIT_CRYPT_VERSION}-linux-arm64.tar" ./getlayer.sh
           docker buildx build \
-            --build-arg GIT_CRYPT_VERSION="${GIT_CRYPT_VERSION}" \
             --push \
             --platform linux/arm64,linux/amd64 \
+            --build-arg GIT_CRYPT_VERSION="${GIT_CRYPT_VERSION}" \
             -f alpine.Dockerfile \
-            -t truemark/git-crypt:musl-${GIT_CRYPT_VERSION} \
-            -t truemark/git-crypt:musl \
+            -t truemark/git-crypt:alpine-${GIT_CRYPT_VERSION} \
+            -t truemark/git-crypt:alpine \
             .
-          IMAGE="truemark/git-crypt:musl-${GIT_CRYPT_VERSION}" ARCH="amd64" FILE="git-crypt-musl-${GIT_CRYPT_VERSION}-linux-amd64.tar" ./getlayer.sh
-          IMAGE="truemark/git-crypt:musl-${GIT_CRYPT_VERSION}" ARCH="arm64" FILE="git-crypt-musl-${GIT_CRYPT_VERSION}-linux-arm64.tar" ./getlayer.sh
+          IMAGE="truemark/git-crypt:alpine-${GIT_CRYPT_VERSION}" ARCH="amd64" FILE="git-crypt-alpine-${GIT_CRYPT_VERSION}-linux-amd64.tar" ./getlayer.sh
+          IMAGE="truemark/git-crypt:alpine-${GIT_CRYPT_VERSION}" ARCH="arm64" FILE="git-crypt-alpine-${GIT_CRYPT_VERSION}-linux-arm64.tar" ./getlayer.sh
+          docker buildx build \
+            --push \
+            --platform linux/arm64,linux/amd64 \
+            --build-arg GIT_CRYPT_VERSION="${GIT_CRYPT_VERSION}" \
+            -f ubuntu-focal.Dockerfile \
+            -t truemark/git-crypt:ubuntu-focal-${GIT_CRYPT_VERSION} \
+            -t truemark/git-crypt:ubuntu-focal \
+            .
+          IMAGE="truemark/git-crypt:ubuntu-focal-${GIT_CRYPT_VERSION}" ARCH="amd64" FILE="git-crypt-ubuntu-focal-${GIT_CRYPT_VERSION}-linux-amd64.tar" ./getlayer.sh
+          IMAGE="truemark/git-crypt:ubuntu-focal-${GIT_CRYPT_VERSION}" ARCH="arm64" FILE="git-crypt-ubuntu-focal-${GIT_CRYPT_VERSION}-linux-arm64.tar" ./getlayer.sh
+          docker buildx build \
+            --push \
+            --platform linux/arm64,linux/amd64 \
+            --build-arg GIT_CRYPT_VERSION="${GIT_CRYPT_VERSION}" \
+            -f ubuntu-jammy.Dockerfile \
+            -t truemark/git-crypt:ubuntu-jammy-${GIT_CRYPT_VERSION} \
+            -t truemark/git-crypt:ubuntu-jammy \
+            .
+          IMAGE="truemark/git-crypt:ubuntu-jammy-${GIT_CRYPT_VERSION}" ARCH="amd64" FILE="git-crypt-ubuntu-jammy-${GIT_CRYPT_VERSION}-linux-amd64.tar" ./getlayer.sh
+          IMAGE="truemark/git-crypt:ubuntu-jammy-${GIT_CRYPT_VERSION}" ARCH="arm64" FILE="git-crypt-ubuntu-jammy-${GIT_CRYPT_VERSION}-linux-arm64.tar" ./getlayer.sh
       - uses: actions/upload-artifact@v3
         with:
           name: files

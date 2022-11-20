@@ -1,6 +1,6 @@
 FROM alpine:latest AS git-build
 ARG GIT_CRYPT_VERSION
-RUN apk update && apk add build-base tar curl-dev expat-dev gettext-dev openssl-dev zlib-dev autoconf git bash
+RUN apk update && apk add git make g++ openssl-dev
 RUN cd / && git clone -c advice.detachedHead=false --single-branch --depth 1 --branch ${GIT_CRYPT_VERSION} https://github.com/AGWA/git-crypt.git
 RUN rm -rf /usr/local/* && \
     cd /git-crypt && \
