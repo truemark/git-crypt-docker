@@ -32,11 +32,11 @@ COPY --from=truemark/git-crypt:ubuntu-focal /usr/local/ /usr/local/
 
 ## How do I download the latest version of git-crypt without using docker?
 
-The following one-liner example uses curl, jq and tar to grab
-the latest non-beta release for alpine-arm64 and installs it.
+The following one-liner example uses curl to grab the latest
+release for alpine-arm64.
 
 ```
-FLAVOR="alpine-arm64" curl -sSL $(curl -sSL https://api.github.com/repos/truemark/git-crypt-docker/releases/latest | jq -r "select(.tag_name | startswith(\"beta\") | not) | .assets[].browser_download_url | select(. | contains(\"${FLAVOR}\"))") -o - | tar -C / -zxf -
+/curl -sSL $(curl -sSL https://api.github.com/repos/truemark/git-crypt-docker/releases/latest | grep browser_download_url | grep alpine-arm64 | cut -d ':' -f 2,3 | tr -d \") -o git-crypt
 ```
 
 ## Maintainers

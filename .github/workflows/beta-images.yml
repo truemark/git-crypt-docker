@@ -77,4 +77,4 @@ jobs:
         with:
           name: files
           path: |
-            *.tar.gz
+            git-crypt-*
