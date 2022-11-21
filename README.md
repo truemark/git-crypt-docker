@@ -1,7 +1,7 @@
 # Git Crypt Docker
 
 This project produces git-crypt binaries and docker images using sources located at
-https://api.github.com/repos/AGWA/git-crypt/tags with the following goals:
+https://api.github.com/repos/AGWA/git-crypt with the following goals:
 
 * Provide an easy way to get the latest version of git-crypt
 * Provide linked versions of git-crypt that work with a number of distributions
