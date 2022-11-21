@@ -13,11 +13,6 @@ docker save -o image/image.tar ${IMAGE}
 
 # Save & Export
 cd image && tar -xf image.tar
-find . -name "layer.tar" -exec mv {} ../${FILE} \;
-gzip -f ../${FILE}
-
-# Save & Export
-cd image && tar -xf image.tar
 find . -name "layer.tar" -exec tar --extract --file={} --strip-components 3 usr/local/bin/git-crypt \;
 mv git-crypt ../${FILE};
 
