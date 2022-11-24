@@ -18,8 +18,8 @@ docker buildx build \
   -t truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-amazonlinux\
   -t truemark/git-crypt:beta-amazonlinux \
   .
-IMAGE="truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-amazonlinux" ARCH="amd64" FILE="git-crypt-${GIT_CRYPT_VERSION}-amazonlinux-amd64.tar" ./getlayer.sh
-IMAGE="truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-amazonlinux" ARCH="arm64" FILE="git-crypt-${GIT_CRYPT_VERSION}-amazonlinux-arm64.tar" ./getlayer.sh
+IMAGE="truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-amazonlinux" ARCH="amd64" FILE="git-crypt-${GIT_CRYPT_VERSION}-amazonlinux-amd64" ./getlayer.sh
+IMAGE="truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-amazonlinux" ARCH="arm64" FILE="git-crypt-${GIT_CRYPT_VERSION}-amazonlinux-arm64" ./getlayer.sh
 
 docker buildx build \
   --push \
@@ -30,8 +30,8 @@ docker buildx build \
   -t truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-alpine \
   -t truemark/git-crypt:beta-alpine \
   .
-IMAGE="truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-alpine" ARCH="amd64" FILE="git-crypt-${GIT_CRYPT_VERSION}-alpine-amd64.tar" ./getlayer.sh
-IMAGE="truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-alpine" ARCH="arm64" FILE="git-crypt-${GIT_CRYPT_VERSION}-alpine-arm64.tar" ./getlayer.sh
+IMAGE="truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-alpine" ARCH="amd64" FILE="git-crypt-${GIT_CRYPT_VERSION}-alpine-amd64" ./getlayer.sh
+IMAGE="truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-alpine" ARCH="arm64" FILE="git-crypt-${GIT_CRYPT_VERSION}-alpine-arm64" ./getlayer.sh
 
 docker buildx build \
   --push \
@@ -42,8 +42,8 @@ docker buildx build \
   -t truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-ubuntu-focal \
   -t truemark/git-crypt:beta-ubuntu-focal \
   .
-IMAGE="truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-ubuntu-focal" ARCH="amd64" FILE="git-crypt-${GIT_CRYPT_VERSION}-ubuntu-focal-amd64.tar" ./getlayer.sh
-IMAGE="truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-ubuntu-focal" ARCH="arm64" FILE="git-crypt-${GIT_CRYPT_VERSION}-ubuntu-focal-arm64.tar" ./getlayer.sh
+IMAGE="truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-ubuntu-focal" ARCH="amd64" FILE="git-crypt-${GIT_CRYPT_VERSION}-ubuntu-focal-amd64" ./getlayer.sh
+IMAGE="truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-ubuntu-focal" ARCH="arm64" FILE="git-crypt-${GIT_CRYPT_VERSION}-ubuntu-focal-arm64" ./getlayer.sh
 
 docker buildx build \
   --push \
@@ -54,5 +54,5 @@ docker buildx build \
   -t truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-ubuntu-jammy \
   -t truemark/git-crypt:beta-ubuntu-jammy \
   .
-IMAGE="truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-ubuntu-jammy" ARCH="amd64" FILE="git-crypt-${GIT_CRYPT_VERSION}-ubuntu-jammy-amd64.tar" ./getlayer.sh
-IMAGE="truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-ubuntu-jammy" ARCH="arm64" FILE="git-crypt-${GIT_CRYPT_VERSION}-ubuntu-jammy-arm64.tar" ./getlayer.sh
+IMAGE="truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-ubuntu-jammy" ARCH="amd64" FILE="git-crypt-${GIT_CRYPT_VERSION}-ubuntu-jammy-amd64" ./getlayer.sh
+IMAGE="truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-ubuntu-jammy" ARCH="arm64" FILE="git-crypt-${GIT_CRYPT_VERSION}-ubuntu-jammy-arm64" ./getlayer.sh

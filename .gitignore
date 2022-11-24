@@ -2,6 +2,7 @@ notes.txt
 .sw?
 .vscode
 *.zip
+*.tar
 
 # Terraform & Terragrunt
 .terragrunt-cache
