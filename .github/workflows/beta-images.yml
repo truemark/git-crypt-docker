@@ -69,6 +69,7 @@ jobs:
             -f ubuntu-jammy.Dockerfile \
             -t truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-ubuntu-jammy \
             -t truemark/git-crypt:beta-ubuntu-jammy \
+            -t truemark/git-crypt:beta-ubuntu \
             .
           IMAGE="truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-ubuntu-jammy" ARCH="amd64" FILE="git-crypt-${GIT_CRYPT_VERSION}-ubuntu-jammy-amd64.tar" ./getlayer.sh
           IMAGE="truemark/git-crypt:beta-${GIT_CRYPT_VERSION}-ubuntu-jammy" ARCH="arm64" FILE="git-crypt-${GIT_CRYPT_VERSION}-ubuntu-jammy-arm64.tar" ./getlayer.sh

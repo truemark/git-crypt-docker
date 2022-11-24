@@ -76,6 +76,7 @@ jobs:
             -f ubuntu-jammy.Dockerfile \
             -t truemark/git-crypt:${GIT_CRYPT_VERSION}-ubuntu-jammy \
             -t truemark/git-crypt:ubuntu-jammy \
+            -t truemark/git-crypt:ubuntu \
             .
           IMAGE="truemark/git-crypt:${GIT_CRYPT_VERSION}-ubuntu-jammy" ARCH="amd64" FILE="git-crypt-ubuntu-jammy-amd64" ./getlayer.sh
           IMAGE="truemark/git-crypt:${GIT_CRYPT_VERSION}-ubuntu-jammy" ARCH="arm64" FILE="git-crypt-ubuntu-jammy-arm64" ./getlayer.sh
