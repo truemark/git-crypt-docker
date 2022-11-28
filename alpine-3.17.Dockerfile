@@ -1,6 +1,6 @@
-FROM ubuntu:jammy AS build
-COPY --from=truemark/git:ubuntu-jammy /usr/local/ /usr/local/
-RUN apt-get -qq update && DEBIAN_FRONTEND=noninteractive apt-get install -qq make g++ libssl-dev libcurl4
+FROM alpine:3.17 AS build
+COPY --from=truemark/git:alpine-3.17 /usr/local/ /usr/local/
+RUN apk add --no-cache make libcurl g++ openssl-dev libstdc++
 ARG GIT_CRYPT_VERSION
 RUN cd / && git clone -c advice.detachedHead=false --single-branch --depth 1 --branch ${GIT_CRYPT_VERSION} https://github.com/AGWA/git-crypt.git
 RUN cd /git-crypt && \
@@ -14,11 +14,11 @@ RUN cd /git-crypt && \
     make install && \
     strip /usr/local/bin/git-crypt
 
-FROM ubuntu:jammy as test
-COPY --from=truemark/git:ubuntu-jammy /usr/local/ /usr/local/
+FROM alpine:3.17 as test
+COPY --from=truemark/git:alpine-3.17 /usr/local/ /usr/local/
 COPY --from=build /usr/local/bin/git-crypt /usr/local/bin/git-crypt
-RUN apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -qq libcurl4
 COPY test.sh /test.sh
+RUN apk add --no-cache bash libcurl libstdc++
 RUN /test.sh
 
 FROM scratch
