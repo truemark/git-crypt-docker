@@ -17,4 +17,4 @@ RUN apk add --no-cache bash libcurl libstdc++
 RUN /test.sh
 
 FROM scratch
-COPY --from=test /usr/local/bin/git-crypt /usr/local/local/bin/git-crypt
+COPY --from=test /usr/local/bin/git-crypt /usr/local/bin/git-crypt
