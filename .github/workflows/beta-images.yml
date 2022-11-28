@@ -4,10 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
-  schedule:
-    # Run at 4PM UTC every Monday
-    - cron: '0 16 * * 1'
+      - develop
 
 jobs:
   build-amazonlinux-2:
