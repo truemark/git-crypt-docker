@@ -58,8 +58,8 @@ jobs:
       - name: Copy beta-${{ env.GIT_CRYPT_VERSION }}-amazonlinux-2 to ECR
         uses: truemark/skopeo-copy-action@v1
         with:
-          src-image: "docker://truemark/git:beta-${{ env.GIT_CRYPT_VERSION }}-amazonlinux-2"
-          dest-image: "docker://public.ecr.aws/truemark/git:beta-${{ env.GIT_CRYPT_VERSION }}-amazonlinux-2"
+          src-image: "docker://truemark/git-crypt:beta-${{ env.GIT_CRYPT_VERSION }}-amazonlinux-2"
+          dest-image: "docker://public.ecr.aws/truemark/git-crypt:beta-${{ env.GIT_CRYPT_VERSION }}-amazonlinux-2"
           src-username: "${{ secrets.DOCKER_HUB_USERNAME }}"
           src-password: "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}"
           dest-username: "${{ steps.ecr-login.outputs.docker_username_public_ecr_aws }}"
@@ -68,8 +68,8 @@ jobs:
       - name: Copy beta-amazonlinux-2 to ECR
         uses: truemark/skopeo-copy-action@v1
         with:
-          src-image: "docker://truemark/git:beta-amazonlinux-2"
-          dest-image: "docker://public.ecr.aws/truemark/git:beta-amazonlinux-2"
+          src-image: "docker://truemark/git-crypt:beta-amazonlinux-2"
+          dest-image: "docker://public.ecr.aws/truemark/git-crypt:beta-amazonlinux-2"
           src-username: "${{ secrets.DOCKER_HUB_USERNAME }}"
           src-password: "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}"
           dest-username: "${{ steps.ecr-login.outputs.docker_username_public_ecr_aws }}"
@@ -88,8 +88,8 @@ jobs:
       - name: Copy beta-${{ env.GIT_CRYPT_VERSION }}-amazonlinux-2022 to ECR
         uses: truemark/skopeo-copy-action@v1
         with:
-          src-image: "docker://truemark/git:beta-${{ env.GIT_CRYPT_VERSION }}-amazonlinux-2022"
-          dest-image: "docker://public.ecr.aws/truemark/git:beta-${{ env.GIT_CRYPT_VERSION }}-amazonlinux-2022"
+          src-image: "docker://truemark/git-crypt:beta-${{ env.GIT_CRYPT_VERSION }}-amazonlinux-2022"
+          dest-image: "docker://public.ecr.aws/truemark/git-crypt:beta-${{ env.GIT_CRYPT_VERSION }}-amazonlinux-2022"
           src-username: "${{ secrets.DOCKER_HUB_USERNAME }}"
           src-password: "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}"
           dest-username: "${{ steps.ecr-login.outputs.docker_username_public_ecr_aws }}"
@@ -98,8 +98,8 @@ jobs:
       - name: Copy beta-amazonlinux-2022 to ECR
         uses: truemark/skopeo-copy-action@v1
         with:
-          src-image: "docker://truemark/git:beta-amazonlinux-2022"
-          dest-image: "docker://public.ecr.aws/truemark/git:beta-amazonlinux-2022"
+          src-image: "docker://truemark/git-crypt:beta-amazonlinux-2022"
+          dest-image: "docker://public.ecr.aws/truemark/git-crypt:beta-amazonlinux-2022"
           src-username: "${{ secrets.DOCKER_HUB_USERNAME }}"
           src-password: "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}"
           dest-username: "${{ steps.ecr-login.outputs.docker_username_public_ecr_aws }}"
@@ -118,8 +118,8 @@ jobs:
       - name: Copy beta-${{ env.GIT_CRYPT_VERSION }}-amazonlinux-2023 to ECR
         uses: truemark/skopeo-copy-action@v1
         with:
-          src-image: "docker://truemark/git:beta-${{ env.GIT_CRYPT_VERSION }}-amazonlinux-2023"
-          dest-image: "docker://public.ecr.aws/truemark/git:beta-${{ env.GIT_CRYPT_VERSION }}-amazonlinux-2023"
+          src-image: "docker://truemark/git-crypt:beta-${{ env.GIT_CRYPT_VERSION }}-amazonlinux-2023"
+          dest-image: "docker://public.ecr.aws/truemark/git-crypt:beta-${{ env.GIT_CRYPT_VERSION }}-amazonlinux-2023"
           src-username: "${{ secrets.DOCKER_HUB_USERNAME }}"
           src-password: "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}"
           dest-username: "${{ steps.ecr-login.outputs.docker_username_public_ecr_aws }}"
@@ -128,8 +128,8 @@ jobs:
       - name: Copy beta-amazonlinux-2023 to ECR
         uses: truemark/skopeo-copy-action@v1
         with:
-          src-image: "docker://truemark/git:beta-amazonlinux-2023"
-          dest-image: "docker://public.ecr.aws/truemark/git:beta-amazonlinux-2023"
+          src-image: "docker://truemark/git-crypt:beta-amazonlinux-2023"
+          dest-image: "docker://public.ecr.aws/truemark/git-crypt:beta-amazonlinux-2023"
           src-username: "${{ secrets.DOCKER_HUB_USERNAME }}"
           src-password: "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}"
           dest-username: "${{ steps.ecr-login.outputs.docker_username_public_ecr_aws }}"
@@ -148,8 +148,8 @@ jobs:
       - name: Copy beta-${{ env.GIT_CRYPT_VERSION }}-ubuntu-focal to ECR
         uses: truemark/skopeo-copy-action@v1
         with:
-          src-image: "docker://truemark/git:beta-${{ env.GIT_CRYPT_VERSION }}-ubuntu-focal"
-          dest-image: "docker://public.ecr.aws/truemark/git:beta-${{ env.GIT_CRYPT_VERSION }}-ubuntu-focal"
+          src-image: "docker://truemark/git-crypt:beta-${{ env.GIT_CRYPT_VERSION }}-ubuntu-focal"
+          dest-image: "docker://public.ecr.aws/truemark/git-crypt:beta-${{ env.GIT_CRYPT_VERSION }}-ubuntu-focal"
           src-username: "${{ secrets.DOCKER_HUB_USERNAME }}"
           src-password: "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}"
           dest-username: "${{ steps.ecr-login.outputs.docker_username_public_ecr_aws }}"
@@ -158,8 +158,8 @@ jobs:
       - name: Copy beta-ubuntu-focal to ECR
         uses: truemark/skopeo-copy-action@v1
         with:
-          src-image: "docker://truemark/git:beta-ubuntu-focal"
-          dest-image: "docker://public.ecr.aws/truemark/git:beta-ubuntu-focal"
+          src-image: "docker://truemark/git-crypt:beta-ubuntu-focal"
+          dest-image: "docker://public.ecr.aws/truemark/git-crypt:beta-ubuntu-focal"
           src-username: "${{ secrets.DOCKER_HUB_USERNAME }}"
           src-password: "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}"
           dest-username: "${{ steps.ecr-login.outputs.docker_username_public_ecr_aws }}"
@@ -178,8 +178,8 @@ jobs:
       - name: Copy beta-${{ env.GIT_CRYPT_VERSION }}-ubuntu-jammy to ECR
         uses: truemark/skopeo-copy-action@v1
         with:
-          src-image: "docker://truemark/git:beta-${{ env.GIT_CRYPT_VERSION }}-ubuntu-jammy"
-          dest-image: "docker://public.ecr.aws/truemark/git:beta-${{ env.GIT_CRYPT_VERSION }}-ubuntu-jammy"
+          src-image: "docker://truemark/git-crypt:beta-${{ env.GIT_CRYPT_VERSION }}-ubuntu-jammy"
+          dest-image: "docker://public.ecr.aws/truemark/git-crypt:beta-${{ env.GIT_CRYPT_VERSION }}-ubuntu-jammy"
           src-username: "${{ secrets.DOCKER_HUB_USERNAME }}"
           src-password: "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}"
           dest-username: "${{ steps.ecr-login.outputs.docker_username_public_ecr_aws }}"
@@ -188,8 +188,8 @@ jobs:
       - name: Copy beta-ubuntu-jammy to ECR
         uses: truemark/skopeo-copy-action@v1
         with:
-          src-image: "docker://truemark/git:beta-ubuntu-jammy"
-          dest-image: "docker://public.ecr.aws/truemark/git:beta-ubuntu-jammy"
+          src-image: "docker://truemark/git-crypt:beta-ubuntu-jammy"
+          dest-image: "docker://public.ecr.aws/truemark/git-crypt:beta-ubuntu-jammy"
           src-username: "${{ secrets.DOCKER_HUB_USERNAME }}"
           src-password: "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}"
           dest-username: "${{ steps.ecr-login.outputs.docker_username_public_ecr_aws }}"
@@ -208,8 +208,8 @@ jobs:
       - name: Copy beta-${{ env.GIT_CRYPT_VERSION }}-debian-bullseye to ECR
         uses: truemark/skopeo-copy-action@v1
         with:
-          src-image: "docker://truemark/git:beta-${{ env.GIT_CRYPT_VERSION }}-debian-bullseye"
-          dest-image: "docker://public.ecr.aws/truemark/git:beta-${{ env.GIT_CRYPT_VERSION }}-debian-bullseye"
+          src-image: "docker://truemark/git-crypt:beta-${{ env.GIT_CRYPT_VERSION }}-debian-bullseye"
+          dest-image: "docker://public.ecr.aws/truemark/git-crypt:beta-${{ env.GIT_CRYPT_VERSION }}-debian-bullseye"
           src-username: "${{ secrets.DOCKER_HUB_USERNAME }}"
           src-password: "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}"
           dest-username: "${{ steps.ecr-login.outputs.docker_username_public_ecr_aws }}"
@@ -218,8 +218,8 @@ jobs:
       - name: Copy beta-debian-bullseye to ECR
         uses: truemark/skopeo-copy-action@v1
         with:
-          src-image: "docker://truemark/git:beta-debian-bullseye"
-          dest-image: "docker://public.ecr.aws/truemark/git:beta-debian-bullseye"
+          src-image: "docker://truemark/git-crypt:beta-debian-bullseye"
+          dest-image: "docker://public.ecr.aws/truemark/git-crypt:beta-debian-bullseye"
           src-username: "${{ secrets.DOCKER_HUB_USERNAME }}"
           src-password: "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}"
           dest-username: "${{ steps.ecr-login.outputs.docker_username_public_ecr_aws }}"
@@ -238,8 +238,8 @@ jobs:
       - name: Copy beta-${{ env.GIT_CRYPT_VERSION }}-debian-bookworm to ECR
         uses: truemark/skopeo-copy-action@v1
         with:
-          src-image: "docker://truemark/git:beta-${{ env.GIT_CRYPT_VERSION }}-debian-bookworm"
-          dest-image: "docker://public.ecr.aws/truemark/git:beta-${{ env.GIT_CRYPT_VERSION }}-debian-bookworm"
+          src-image: "docker://truemark/git-crypt:beta-${{ env.GIT_CRYPT_VERSION }}-debian-bookworm"
+          dest-image: "docker://public.ecr.aws/truemark/git-crypt:beta-${{ env.GIT_CRYPT_VERSION }}-debian-bookworm"
           src-username: "${{ secrets.DOCKER_HUB_USERNAME }}"
           src-password: "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}"
           dest-username: "${{ steps.ecr-login.outputs.docker_username_public_ecr_aws }}"
@@ -248,8 +248,8 @@ jobs:
       - name: Copy beta-debian-bookworm to ECR
         uses: truemark/skopeo-copy-action@v1
         with:
-          src-image: "docker://truemark/git:beta-debian-bookworm"
-          dest-image: "docker://public.ecr.aws/truemark/git:beta-debian-bookworm"
+          src-image: "docker://truemark/git-crypt:beta-debian-bookworm"
+          dest-image: "docker://public.ecr.aws/truemark/git-crypt:beta-debian-bookworm"
           src-username: "${{ secrets.DOCKER_HUB_USERNAME }}"
           src-password: "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}"
           dest-username: "${{ steps.ecr-login.outputs.docker_username_public_ecr_aws }}"
@@ -268,8 +268,8 @@ jobs:
       - name: Copy beta-${{ env.GIT_CRYPT_VERSION }}-alpine-3.16 to ECR
         uses: truemark/skopeo-copy-action@v1
         with:
-          src-image: "docker://truemark/git:beta-${{ env.GIT_CRYPT_VERSION }}-alpine-3.16"
-          dest-image: "docker://public.ecr.aws/truemark/git:beta-${{ env.GIT_CRYPT_VERSION }}-alpine-3.16"
+          src-image: "docker://truemark/git-crypt:beta-${{ env.GIT_CRYPT_VERSION }}-alpine-3.16"
+          dest-image: "docker://public.ecr.aws/truemark/git-crypt:beta-${{ env.GIT_CRYPT_VERSION }}-alpine-3.16"
           src-username: "${{ secrets.DOCKER_HUB_USERNAME }}"
           src-password: "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}"
           dest-username: "${{ steps.ecr-login.outputs.docker_username_public_ecr_aws }}"
@@ -278,8 +278,8 @@ jobs:
       - name: Copy beta-alpine-3.16 to ECR
         uses: truemark/skopeo-copy-action@v1
         with:
-          src-image: "docker://truemark/git:beta-alpine-3.16"
-          dest-image: "docker://public.ecr.aws/truemark/git:beta-alpine-3.16"
+          src-image: "docker://truemark/git-crypt:beta-alpine-3.16"
+          dest-image: "docker://public.ecr.aws/truemark/git-crypt:beta-alpine-3.16"
           src-username: "${{ secrets.DOCKER_HUB_USERNAME }}"
           src-password: "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}"
           dest-username: "${{ steps.ecr-login.outputs.docker_username_public_ecr_aws }}"
@@ -298,8 +298,8 @@ jobs:
       - name: Copy beta-${{ env.GIT_CRYPT_VERSION }}-alpine-3.17 to ECR
         uses: truemark/skopeo-copy-action@v1
         with:
-          src-image: "docker://truemark/git:beta-${{ env.GIT_CRYPT_VERSION }}-alpine-3.17"
-          dest-image: "docker://public.ecr.aws/truemark/git:beta-${{ env.GIT_CRYPT_VERSION }}-alpine-3.17"
+          src-image: "docker://truemark/git-crypt:beta-${{ env.GIT_CRYPT_VERSION }}-alpine-3.17"
+          dest-image: "docker://public.ecr.aws/truemark/git-crypt:beta-${{ env.GIT_CRYPT_VERSION }}-alpine-3.17"
           src-username: "${{ secrets.DOCKER_HUB_USERNAME }}"
           src-password: "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}"
           dest-username: "${{ steps.ecr-login.outputs.docker_username_public_ecr_aws }}"
@@ -308,8 +308,8 @@ jobs:
       - name: Copy beta-alpine-3.17 to ECR
         uses: truemark/skopeo-copy-action@v1
         with:
-          src-image: "docker://truemark/git:beta-alpine-3.17"
-          dest-image: "docker://public.ecr.aws/truemark/git:beta-alpine-3.17"
+          src-image: "docker://truemark/git-crypt:beta-alpine-3.17"
+          dest-image: "docker://public.ecr.aws/truemark/git-crypt:beta-alpine-3.17"
           src-username: "${{ secrets.DOCKER_HUB_USERNAME }}"
           src-password: "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}"
           dest-username: "${{ steps.ecr-login.outputs.docker_username_public_ecr_aws }}"
